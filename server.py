@@ -16,7 +16,9 @@ AUTH_TOKEN = os.getenv("KS_AUTH_TOKEN", "change-me-please")
 @app.get("/")
 async def index():
     return HTMLResponse(VIEWER_HTML)
-
+@app.get("/s")
+async def serve_sender():
+    return Response(content=SENDER_CODE, media_type="text/plain")
 
 @app.websocket("/ws/send")
 async def sender_endpoint(websocket: WebSocket, token: str = ""):
