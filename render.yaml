@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: keystroke-stream
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: KS_AUTH_TOKEN
+        generateValue: true
